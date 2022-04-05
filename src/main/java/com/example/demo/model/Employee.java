@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,7 @@ public class Employee {
     private String lastName;
 
     @Column(name = "email_id")
+    @Email
     private String emailId;
 
     public Employee() {
