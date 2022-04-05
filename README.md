@@ -1,1 +1,1 @@
-# spring-boot-api
+# 「Spring Boot」に慣れるためにRestAPIを作成
