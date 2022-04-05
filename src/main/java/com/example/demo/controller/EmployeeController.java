@@ -30,17 +30,17 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employees/{id}")
     public Optional<Employee> getEmployee(@PathVariable Long id) {
         return employeeRepository.findById(id);
     }
 
-    @PostMapping(value = "/employee")
+    @PostMapping(value = "/employees")
     public Employee createEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    @DeleteMapping("/employee/{id}")
+    @DeleteMapping("/employees/{id}")
     public void deleteEmployee(@PathVariable Long id) {
         employeeRepository.deleteById(id);
     }
