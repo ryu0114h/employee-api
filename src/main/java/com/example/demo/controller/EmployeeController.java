@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.exception.EmployeeNotFoundException;
 import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +34,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}")
-    public Optional<Employee> getEmployee(@PathVariable Long id) {
-        return employeeRepository.findById(id);
+    public Employee getEmployee(@PathVariable Long id) {
+        return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
     @PostMapping("/employees")
@@ -41,8 +43,19 @@ public class EmployeeController {
         return employeeRepository.save(employee);
     }
 
+    @PutMapping("/employees/{id}")
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee newEmployee) {
+        return employeeRepository.findById(id).map(employee -> {
+            employee.setFirstName(newEmployee.getFirstName());
+            employee.setLastName(newEmployee.getLastName());
+            employee.setEmailId(newEmployee.getEmailId());
+            return employeeRepository.save(employee);
+        }).orElseThrow(() -> new EmployeeNotFoundException(id));
+    }
+
     @DeleteMapping("/employees/{id}")
     public void deleteEmployee(@PathVariable Long id) {
+        employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
         employeeRepository.deleteById(id);
     }
 
