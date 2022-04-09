@@ -2,8 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -76,8 +74,6 @@ public class EmployeeController {
 
         employeeRepository.deleteById(id);
 
-        Map<String, String> body = new HashMap<>();
-        body.put("message", "deleted!");
-        return ResponseEntity.status(HttpStatus.OK).body(body);
+        return ResponseEntity.status(HttpStatus.OK).body("deleted!");
     }
 }
