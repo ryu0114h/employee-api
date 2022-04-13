@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>employee-api</artifactId>
+	<artifactId>spring-boot-employee-api</artifactId>
 	<version>1.0.0</version>
-	<name>employee-api</name>
+	<name>spring-boot-employee-api</name>
 	<description>Spring Boot REST API for Employee</description>
 	<properties>
 		<java.version>11</java.version>
